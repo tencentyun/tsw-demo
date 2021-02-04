@@ -1,0 +1,14 @@
+server:
+  port: 19101
+spring:
+  application:
+    name: spring-boot-account
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/tsw_demo?useSSL=false&characterEncoding=utf8&serverTimezone=GMT
+    username:
+    password:
+logging:
+  file: log/${spring.application.name}/${spring.application.name}.log
+  level:
+    ROOT: info

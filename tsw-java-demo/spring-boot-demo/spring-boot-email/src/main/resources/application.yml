@@ -1,0 +1,34 @@
+server:
+  port: 19104
+spring:
+  application:
+    name: spring-boot-email
+  redis:
+    database: 0
+    host: 127.0.0.1
+    port:
+    password:
+  kafka:
+    bootstrap-servers:
+    #消费者的配置
+    consumer:
+      #Kafka中没有初始偏移或如果当前偏移在服务器上不再存在时,默认区最新 ，有三个选项 【latest, earliest, none】
+      auto-offset-reset: latest
+      #是否开启自动提交
+      enable-auto-commit: true
+      #自动提交的时间间隔
+      auto-commit-interval: 100
+      #key的解码方式
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      #value的解码方式
+      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      #在/usr/local/etc/kafka/consumer.properties中有配置
+      group-id: tsw-spring-boot-demo
+      properties:
+        sasl.mechanism: PLAIN
+        security.protocol: SASL_PLAINTEXT
+        sasl.jaas.config: org.apache.kafka.common.security.plain.PlainLoginModule required username="username" password="password";
+logging:
+  file: log/${spring.application.name}/${spring.application.name}.log
+  level:
+    ROOT: info
