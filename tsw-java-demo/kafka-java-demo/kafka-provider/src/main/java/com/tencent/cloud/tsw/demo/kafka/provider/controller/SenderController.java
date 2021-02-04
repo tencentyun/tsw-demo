@@ -1,7 +1,7 @@
-package con.tencent.cloud.tsw.demo.kafka.provider.controller;
+package com.tencent.cloud.tsw.demo.kafka.provider.controller;
 
 
-import con.tencent.cloud.tsw.demo.kafka.provider.schedule.ScheduleKafkaSender;
+import com.tencent.cloud.tsw.demo.kafka.provider.schedule.ScheduleKafkaSender;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;

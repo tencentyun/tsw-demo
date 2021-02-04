@@ -1,8 +1,8 @@
-package con.tencent.cloud.tsw.demo.kafka.provider.schedule;
+package com.tencent.cloud.tsw.demo.kafka.provider.schedule;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import con.tencent.cloud.tsw.demo.kafka.provider.beans.Message;
+import com.tencent.cloud.tsw.demo.kafka.provider.beans.Message;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

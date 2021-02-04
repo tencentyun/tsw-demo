@@ -1,4 +1,4 @@
-package con.tencent.cloud.tsw.demo.kafka.consumer;
+package com.tencent.cloud.tsw.demo.kafka.consumer;
 
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.slf4j.Logger;

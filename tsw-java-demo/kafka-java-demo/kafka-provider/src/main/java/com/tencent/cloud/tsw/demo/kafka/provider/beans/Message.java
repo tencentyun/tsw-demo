@@ -1,4 +1,4 @@
-package con.tencent.cloud.tsw.demo.kafka.provider.beans;
+package com.tencent.cloud.tsw.demo.kafka.provider.beans;
 
 
 import java.util.Date;

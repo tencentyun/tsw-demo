@@ -1,4 +1,4 @@
-package con.tencent.cloud.tsw.demo.kafka.provider;
+package com.tencent.cloud.tsw.demo.kafka.provider;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
