@@ -1,18 +1,63 @@
-/.classpath
-/.project
-/.settings
-/traget
-/*/.classpath
-/*/.project
-/*/.settings
-/*/target
-/*/log
-/*/logs
-/.idea
-/*.iml
-/*/.idea
-/*/*.iml
-**/*.iml
-.idea
-log
-**/target/
+# Eclipse project files
+.project
+.classpath
+.settings
+
+# IntelliJ IDEA project files and directories
+*.iml
+*.ipr
+*.iws
+.idea/
+.shelf/
+
+# Geany project file
+.geany
+
+# KDevelop project file and directory
+.kdev4/
+*.kdev4
+
+# Build targets
+/target
+*/target
+**/target
+
+# Report directories
+/reports
+*/reports
+
+# Mac-specific directory that no other operating system needs.
+.DS_Store
+
+/**/rebel.xml
+tsw-test/
+tsw-client-package
+
+# JVM crash logs
+hs_err_pid*.log
+
+dependency-reduced-pom.xml
+
+*/.unison.*
+
+# exclude mainframer files
+mainframer
+.mainframer
+
+# exclude docker-sync stuff
+.docker-sync
+*/.docker-sync
+
+# exclude vscode files
+.vscode/
+*.factorypath
+
+# other
+tags
+Makefile
+
+# log
+/log
+*/log
+**/log
+*.log
