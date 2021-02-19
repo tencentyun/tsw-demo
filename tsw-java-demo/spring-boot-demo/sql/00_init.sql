@@ -35,9 +35,9 @@ INSERT INTO `tsw_demo`.`tsw_demo_inventory` VALUES (1, 2000000000);
 COMMIT;
 
 -- ----------------------------
--- Table structure for tws_demo_order
+-- Table structure for tsw_demo_order
 -- ----------------------------
-CREATE TABLE `tsw_demo`.`tws_demo_order` (
+CREATE TABLE `tsw_demo`.`tsw_demo_order` (
   `order_id` int(11) NOT NULL AUTO_INCREMENT COMMENT '订单ID',
   `product_id` int(11) NOT NULL COMMENT '产品ID',
   `qty` int(11) NOT NULL COMMENT '数量',
