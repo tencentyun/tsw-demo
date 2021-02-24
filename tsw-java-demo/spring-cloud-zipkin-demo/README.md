@@ -25,17 +25,17 @@ graph LR
 
 PS: account、email、inventory、logistics和order目录可以在不同主机上任意部署。
 ```
-|-- tsw-demo
+|-- assembly-1.0-tsw-demo-spring-cloud-zipkin
        |-- start.sh
        |-- curl_cron.sh
        |-- README.md
        |-- sql
        |   |-- 00_init.sql
-       |-- spring-boot-account-0.0.1-SNAPSHOT.jar
-       |-- spring-boot-email-0.0.1-SNAPSHOT.jar
-       |-- spring-boot-inventory-0.0.1-SNAPSHOT.jar
-       |-- spring-boot-logistics-0.0.1-SNAPSHOT.jar
-       |-- spring-boot-order-0.0.1-SNAPSHOT.jar
+       |-- spring-cloud-zipkin-account-1.0.jar
+       |-- spring-cloud-zipkin-email-1.0.jar
+       |-- spring-cloud-zipkin-inventory-1.0.jar
+       |-- spring-cloud-zipkin-logistics-1.0.jar
+       |-- spring-cloud-zipkin-order-1.0.jar
 ```
 #### Ready
 

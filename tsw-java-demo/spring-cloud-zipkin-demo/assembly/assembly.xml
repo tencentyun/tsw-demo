@@ -1,5 +1,5 @@
 <assembly>
-    <id>bin</id>
+    <id>tsw-demo-spring-cloud-zipkin</id>
     <formats>
         <format>zip</format>
     </formats>
@@ -59,4 +59,10 @@
             <filtered>false</filtered>
         </fileSet>
     </fileSets>
+    <files>
+        <file>
+            <source>${parent.basedir}/README.md</source>
+            <outputDirectory>./</outputDirectory>
+        </file>
+    </files>
 </assembly>

@@ -54,27 +54,27 @@ done
 
 if [ "$package" == "all" ] || [ "$package" == "order" ]; then
   echo "Start order"
-  nohup java -jar spring-cloud-zipkin-order-1.0.0-SNAPSHOT.jar $jvm_opt --db.host=$db_host --db.port=$db_port --db.username=$db_username --db.password=$db_password --zipkin.url=$zipkin_url > /dev/null &
+  nohup java -jar spring-cloud-zipkin-order-1.0.jar $jvm_opt --db.host=$db_host --db.port=$db_port --db.username=$db_username --db.password=$db_password --zipkin.url=$zipkin_url > /dev/null &
 fi
 
 if [ "$package" == "all" ] || [ "$package" == "account" ]; then
   echo "Start account"
-  nohup java -jar spring-cloud-zipkin-account-1.0.0-SNAPSHOT.jar $jvm_opt --db.host=$db_host --db.port=$db_port --db.username=$db_username --db.password=$db_password --zipkin.url=$zipkin_url > /dev/null &
+  nohup java -jar spring-cloud-zipkin-account-1.0.jar $jvm_opt --db.host=$db_host --db.port=$db_port --db.username=$db_username --db.password=$db_password --zipkin.url=$zipkin_url > /dev/null &
 fi
 
 if [ "$package" == "all" ] || [ "$package" == "inventory" ]; then
   echo "Start inventory"
-  nohup java -jar spring-cloud-zipkin-inventory-1.0.0-SNAPSHOT.jar $jvm_opt --db.host=$db_host --db.port=$db_port --db.username=$db_username --db.password=$db_password --zipkin.url=$zipkin_url > /dev/null &
+  nohup java -jar spring-cloud-zipkin-inventory-1.0.jar $jvm_opt --db.host=$db_host --db.port=$db_port --db.username=$db_username --db.password=$db_password --zipkin.url=$zipkin_url > /dev/null &
 fi
 
 if [ "$package" == "all" ] || [ "$package" == "logistics" ]; then
   echo "Start logistics"
-  nohup java -jar spring-cloud-zipkin-logistics-1.0.0-SNAPSHOT.jar $jvm_opt --redis.host=$redis_host --redis.port=$redis_port --redis.password=$redis_password --kafka.servers=$kafka_servers --kafka.username=$kafka_username --kafka.password=$kafka_password --zipkin.url=$zipkin_url > /dev/null &
+  nohup java -jar spring-cloud-zipkin-logistics-1.0.jar $jvm_opt --redis.host=$redis_host --redis.port=$redis_port --redis.password=$redis_password --kafka.servers=$kafka_servers --kafka.username=$kafka_username --kafka.password=$kafka_password --zipkin.url=$zipkin_url > /dev/null &
 fi
 
 if [ "$package" == "all" ] || [ "$package" == "email" ]; then
   echo "Start email"
-  nohup java -jar spring-cloud-zipkin-email-1.0.0-SNAPSHOT.jar $jvm_opt --redis.host=$redis_host --redis.port=$redis_port --redis.password=$redis_password --kafka.servers=$kafka_servers --kafka.username=$kafka_username --kafka.password=$kafka_password --zipkin.url=$zipkin_url > /dev/null &
+  nohup java -jar spring-cloud-zipkin-email-1.0.jar $jvm_opt --redis.host=$redis_host --redis.port=$redis_port --redis.password=$redis_password --kafka.servers=$kafka_servers --kafka.username=$kafka_username --kafka.password=$kafka_password --zipkin.url=$zipkin_url > /dev/null &
 fi
 
 echo "$line"

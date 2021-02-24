@@ -3,17 +3,26 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
+
     <parent>
-        <artifactId>tsw-java-demo</artifactId>
-        <groupId>com.tencent.cloud</groupId>
-        <version>1.0</version>
-        <relativePath>../pom.xml</relativePath>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>2.3.9.RELEASE</version>
     </parent>
 
+    <groupId>com.tencent.cloud</groupId>
     <artifactId>spring-cloud-zipkin-demo</artifactId>
+    <version>1.0</version>
     <packaging>pom</packaging>
 
     <properties>
+        <!-- 基本配置 -->
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <java.version>1.8</java.version>
+        <maven-jar-plugin.version>3.1.1</maven-jar-plugin.version>
+        <maven.compiler.source>8</maven.compiler.source>
+        <maven.compiler.target>8</maven.compiler.target>
         <spring.cloud-version>Hoxton.SR8</spring.cloud-version>
     </properties>
 
