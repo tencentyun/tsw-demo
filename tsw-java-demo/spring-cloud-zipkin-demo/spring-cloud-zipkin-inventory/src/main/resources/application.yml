@@ -1,0 +1,18 @@
+server:
+  port: 19112
+spring:
+  application:
+    name: spring-cloud-zipkin-inventory
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://${db.host}:${db.port}/tsw_demo?useSSL=false&characterEncoding=utf8&serverTimezone=GMT
+    username: ${db.username}
+    password: ${db.password}
+  zipkin:
+    baseUrl: ${zipkin.url}
+  sleuth:
+    sampler:
+      probability: 1.0
+logging:
+  level:
+    ROOT: info

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <artifactId>tsw-java-demo</artifactId>
+        <groupId>com.tencent.cloud</groupId>
+        <version>1.0</version>
+        <relativePath>../pom.xml</relativePath>
+    </parent>
+
+    <artifactId>spring-cloud-zipkin-demo</artifactId>
+    <packaging>pom</packaging>
+
+    <properties>
+        <spring.cloud-version>Hoxton.SR8</spring.cloud-version>
+    </properties>
+
+    <modules>
+        <module>spring-cloud-zipkin-demo-common</module>
+        <module>spring-cloud-zipkin-inventory</module>
+        <module>spring-cloud-zipkin-order</module>
+        <module>spring-cloud-zipkin-account</module>
+        <module>spring-cloud-zipkin-logistics</module>
+        <module>spring-cloud-zipkin-email</module>
+        <module>assembly</module>
+    </modules>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>com.tencent.cloud</groupId>
+                <artifactId>spring-cloud-zipkin-demo-common</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-dependencies</artifactId>
+                <version>${spring.cloud-version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+</project>
