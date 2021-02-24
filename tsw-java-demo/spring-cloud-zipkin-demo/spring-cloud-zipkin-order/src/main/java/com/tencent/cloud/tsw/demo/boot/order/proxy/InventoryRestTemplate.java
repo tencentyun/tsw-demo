@@ -16,7 +16,7 @@ public class InventoryRestTemplate {
 	private RestTemplate restTemplate;
 
 	public Boolean deduct(Order order) {
-		return restTemplate.postForObject("http://127.0.0.1:19112/inventory/deduct", order, Boolean.class);
+		return restTemplate.postForObject("http://spring-cloud-zipkin-inventory/inventory/deduct", order, Boolean.class);
 	}
 
 }

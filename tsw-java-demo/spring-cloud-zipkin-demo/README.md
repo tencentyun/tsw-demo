@@ -39,11 +39,12 @@ PS: account、email、inventory、logistics和order目录可以在不同主机�
 ```
 #### Ready
 
-- jdk 1.8
-- mysql 5.7+
+- jdk 1.8 (推荐Kona JDK)
+- mysql 5.7+ (推荐腾讯云CDB产品)
 - 执行sql/00_init.sql脚本
-- redis
-- kafka
+- redis (推荐腾讯云Redis产品)
+- kafka (推荐腾讯云CKafka产品)
+- consul (推荐腾讯云TSE产品)
 
 修改`start.sh`脚本的这一部分:
 ``` shell

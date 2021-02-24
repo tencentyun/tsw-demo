@@ -17,7 +17,7 @@ public class AccountRestTemplate {
 
 	public Boolean pay(Order order) {
 		// 扣钱
-		return restTemplate.postForObject("http://127.0.0.1:19111/account/pay", order, Boolean.class);
+		return restTemplate.postForObject("http://spring-cloud-zipkin-account/account/pay", order, Boolean.class);
 	}
 
 }

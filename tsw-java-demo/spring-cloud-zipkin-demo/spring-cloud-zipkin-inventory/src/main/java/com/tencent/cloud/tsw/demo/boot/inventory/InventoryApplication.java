@@ -2,6 +2,8 @@ package com.tencent.cloud.tsw.demo.boot.inventory;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
+import org.springframework.cloud.client.loadbalancer.LoadBalanced;
 import org.springframework.context.annotation.Bean;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.web.client.RestTemplate;
@@ -11,16 +13,18 @@ import org.springframework.web.client.RestTemplate;
  * @date 2020/11/5
  */
 @SpringBootApplication
+@EnableDiscoveryClient
 @EnableTransactionManagement
 public class InventoryApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(InventoryApplication.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(InventoryApplication.class, args);
+    }
 
-	@Bean
-	public RestTemplate restTemplate() {
-		return new RestTemplate();
-	}
+    @Bean
+    @LoadBalanced
+    public RestTemplate restTemplate() {
+        return new RestTemplate();
+    }
 
 }

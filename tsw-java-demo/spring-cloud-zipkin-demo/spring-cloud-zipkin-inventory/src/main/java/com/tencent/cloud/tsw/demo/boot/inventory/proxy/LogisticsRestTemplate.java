@@ -20,7 +20,7 @@ public class LogisticsRestTemplate {
 		// 发送邮件
 		Logistics logistics = new Logistics();
 		logistics.setOrderId(order.getOrderId());
-		return restTemplate.postForObject("http://127.0.0.1:19113/logistics/create", logistics, Boolean.class);
+		return restTemplate.postForObject("http://spring-cloud-zipkin-logistics/logistics/create", logistics, Boolean.class);
 	}
 
 }

@@ -33,7 +33,7 @@ public class EmailController {
 		int rand = RANDOM.nextInt(100);
 		if (rand >= 95) {
 			// 5% 异常
-			throw new RuntimeException("POST spring-boot-email failed.");
+			throw new RuntimeException("POST email failed.");
 		} else if (rand < 10) {
 			// 10% 高延迟(1~5s)
 			try {
@@ -44,7 +44,7 @@ public class EmailController {
 		}
 
 		ValueOperations<String, String> ops = stringRedisTemplate.opsForValue();
-		Object value = ops.get("tsw-zipkin-java-gz");
+		Object value = ops.get("tsw");
 		LOG.info("Redis value of key[tsw] is [{}] when orderId is [{}].", value, email.getOrderId());
 		LOG.info("Email of orderId [{}] is sent.", email.getOrderId());
 		return true;
