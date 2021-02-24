@@ -19,7 +19,7 @@ public class KafkaReceiver {
     @Autowired
     private StringRedisTemplate stringRedisTemplate;
 
-    @KafkaListener(topics = "tsw")
+    @KafkaListener(topics = "tsw-zipkin-java-gz")
     public void listen(ConsumerRecord<?, ?> record) {
 
         Optional<?> kafkaMessage = Optional.ofNullable(record.value());
