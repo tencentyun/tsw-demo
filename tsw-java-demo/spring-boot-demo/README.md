@@ -76,28 +76,143 @@ PS: account、email、inventory、logistics和order目录可以在不同主机�
 ```
 #### Ready
 
-- jdk 1.8
-- mysql 5.7+
+- jdk 1.8 (推荐Kona JDK)
+- mysql 5.7+ (推荐腾讯云CDB产品)
+- redis (推荐腾讯云Redis产品)
+- kafka (推荐腾讯云CKafka产品)
 - 执行sql/00_init.sql脚本
-- 如果tsw-demo模块代码存在proxy包，则需要修改proxy包下XxxRestTemplate类中发送到目标服务的ip与端口，然后修改mysql的ip和端口，最后打成jar包
-- 修改{absolute_path}/tsw-demo/order/tsw-client-package/config/agent.conf文件，注意修改```agent.service_name```、```agent.namespace```、```agent.instance_identify```、```sender.secret_id```、```sender.secret_key```、```sender.etl_ip```、```sender.etl_port```等参数
 
 #### Run
 
-以spring-boot-order：
-- 如果是前台启动jar包：```java -javaagent:{absolute_path}/tsw-demo/order/tsw-client-package/tsw-agent.jar -jar {absolute_path}/tsw-demo/order/spring-boot-order-0.0.1-SNAPSHOT.jar```
-- 如果是后台启动jar包```nohup java -javaagent:{absolute_path}/tsw-demo/order/tsw-client-package/tsw-agent.jar -jar {absolute_path}/tsw-demo/order/spring-boot-order-0.0.1-SNAPSHOT.jar &```
+该demo适用于javaagent的启动。
+
+1. 命令行参数配置（推荐）
+
+${xxx}内的xxx需要自行填写对应配置参数。
+
+1.1 spring-boot-order
+- 前台启动jar包：
+```
+java -javaagent:${absolute_path_1}/xxx-agent.jar -jar ${absolute_path_2}/spring-boot-order-1.0.jar \
+-Xms128m -Xmx128m -XX:MaxMetaspaceSize=128m \
+--db.host=${db.host} --db.port=${db.port} --db.username=${db.username} --db.password=${db.password} \
+--account.url=${account.url} --inventory.url=${inventory.url}
+```
+- 后台启动jar包
+```
+nohup java -javaagent:${absolute_path_1}/xxx-agent.jar -jar ${absolute_path_2}/spring-boot-order-1.0.jar \
+-Xms128m -Xmx128m -XX:MaxMetaspaceSize=128m \
+--db.host=${db.host} --db.port=${db.port} --db.username=${db.username} --db.password=${db.password} \
+--account.url=${account.url} --inventory.url=${inventory.url} >/dev/null 2>&1 &
+```
+
+1.2 spring-boot-account
+- 前台启动jar包：
+```
+java -javaagent:${absolute_path_1}/xxx-agent.jar -jar ${absolute_path_2}/spring-boot-account-1.0.jar \
+-Xms128m -Xmx128m -XX:MaxMetaspaceSize=128m \
+--db.host=${db.host} --db.port=${db.port} --db.username=${db.username} --db.password=${db.password}
+```
+- 后台启动jar包
+```
+nohup java -javaagent:${absolute_path_1}/xxx-agent.jar -jar ${absolute_path_2}/spring-boot-account-1.0.jar \
+-Xms128m -Xmx128m -XX:MaxMetaspaceSize=128m \
+--db.host=${db.host} --db.port=${db.port} --db.username=${db.username} --db.password=${db.password} \
+>/dev/null 2>&1 &
+```
+
+1.3 spring-boot-inventory
+- 前台启动jar包：
+```
+java -javaagent:${absolute_path_1}/xxx-agent.jar -jar ${absolute_path_2}/spring-boot-inventory-1.0.jar \
+-Xms128m -Xmx128m -XX:MaxMetaspaceSize=128m \
+--db.host=${db.host} --db.port=${db.port} --db.username=${db.username} --db.password=${db.password} \
+--logistics.url=${logistics.url}
+```
+- 后台启动jar包
+```
+nohup java -javaagent:${absolute_path_1}/xxx-agent.jar -jar ${absolute_path_2}/spring-boot-inventory-1.0.jar \
+-Xms128m -Xmx128m -XX:MaxMetaspaceSize=128m \
+--db.host=${db.host} --db.port=${db.port} --db.username=${db.username} --db.password=${db.password} \
+--logistics.url=${logistics.url} >/dev/null 2>&1 &
+```
+
+1.4 spring-boot-logistics
+- 前台启动jar包：
+```
+java -javaagent:${absolute_path_1}/xxx-agent.jar -jar ${absolute_path_2}/spring-boot-logistics-1.0.jar \
+-Xms128m -Xmx128m -XX:MaxMetaspaceSize=128m \
+--redis.host=${redis.host} --redis.port=${redis.port} --redis.password=${redis.password} \
+--kafka.servers=${kafka.servers} --kafka.username=${kafka.username} --kafka.password=${kafka.password} \
+--logistics.topic=${logistics.topic}
+```
+- 后台启动jar包
+```
+nohup java -javaagent:${absolute_path_1}/xxx-agent.jar -jar ${absolute_path_2}/spring-boot-logistics-1.0.jar \
+-Xms128m -Xmx128m -XX:MaxMetaspaceSize=128m \
+--redis.host=${redis.host} --redis.port=${redis.port} --redis.password=${redis.password} \
+--kafka.servers=${kafka.servers} --kafka.username=${kafka.username} --kafka.password=${kafka.password} \
+--logistics.topic=${logistics.topic} >/dev/null 2>&1 &
+```
+
+1.5 spring-boot-email
+- 前台启动jar包：
+```
+java -javaagent:${absolute_path_1}/xxx-agent.jar -jar ${absolute_path_2}/spring-boot-email-1.0.jar \
+-Xms128m -Xmx128m -XX:MaxMetaspaceSize=128m \
+--redis.host=${redis.host} --redis.port=${redis.port} --redis.password=${redis.password} \
+--kafka.servers=${kafka.servers} --kafka.username=${kafka.username} --kafka.password=${kafka.password} \
+--email.topic=${email.topic}
+```
+- 后台启动jar包
+```
+nohup java -javaagent:${absolute_path_1}/xxx-agent.jar -jar ${absolute_path_2}/spring-boot-email-1.0.jar \
+-Xms128m -Xmx128m -XX:MaxMetaspaceSize=128m \
+--redis.host=${redis.host} --redis.port=${redis.port} --redis.password=${redis.password} \
+--kafka.servers=${kafka.servers} --kafka.username=${kafka.username} --kafka.password=${kafka.password} \
+--email.topic=${email.topic} >/dev/null 2>&1 &
+```
+
+2. 项目内修改参数
+
+修改完参数后打包运行。
+- 前台启动jar包：
+```
+java -javaagent:${absolute_path_1}/xxx-agent.jar -jar ${absolute_path_2}/spring-boot-xxx-1.0.jar \
+-Xms128m -Xmx128m -XX:MaxMetaspaceSize=128m
+```
+- 后台启动jar包
+```
+nohup java -javaagent:${absolute_path_1}/xxx-agent.jar -jar ${absolute_path_2}/spring-boot-xxx-1.0.jar \
+-Xms128m -Xmx128m -XX:MaxMetaspaceSize=128m >/dev/null 2>&1 &
+```
 
 ## CURL
 
-> 注意修改{IP}
+> 默认为本机，注意修改IP
 
 ```curl
-curl --location --request POST '{IP}:19100/order/create' \
+curl --location --request POST '127.0.0.1:19100/order/create' \
 --header 'Content-Type: application/json' \
 -d '{
     "productId": 1,
     "qty": 1,
     "accountId": 1
 }'
+```
+
+## Auto Run CURL
+
+1. 修改```curl_cron.sh```文件
+
+主要关注```step```（几秒一次）和```curl```后的参数设置
+
+2. 设置cron定时任务，注意定时执行的脚本的路径设置
+
+```shell
+# 设置cron定时任务
+crontab -e
+
+# 填写如下定时任务配置
+* * * * * /bin/sh /root/tsw-demo/order/curl_cron.sh > /root/tsw-demo/order/cron.log
 ```
