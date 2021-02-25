@@ -5,11 +5,11 @@ spring:
     name: spring-boot-email
   redis:
     database: 0
-    host: 127.0.0.1
-    port:
-    password:
+    host: ${redis.host}
+    port: ${redis.port}
+    password: ${redis.password}
   kafka:
-    bootstrap-servers:
+    bootstrap-servers: ${kafka.servers}
     #消费者的配置
     consumer:
       #Kafka中没有初始偏移或如果当前偏移在服务器上不再存在时,默认区最新 ，有三个选项 【latest, earliest, none】
@@ -27,4 +27,8 @@ spring:
       properties:
         sasl.mechanism: PLAIN
         security.protocol: SASL_PLAINTEXT
-        sasl.jaas.config: org.apache.kafka.common.security.plain.PlainLoginModule required username="username" password="password";
+        sasl.jaas.config: org.apache.kafka.common.security.plain.PlainLoginModule required username="${kafka.username}" password="${kafka.password}";
+  boot:
+    demo:
+      email:
+        topic: ${email.topic}

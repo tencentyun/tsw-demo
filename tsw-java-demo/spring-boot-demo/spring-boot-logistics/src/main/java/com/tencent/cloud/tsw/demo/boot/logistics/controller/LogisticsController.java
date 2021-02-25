@@ -5,6 +5,7 @@ import com.tencent.cloud.tsw.demo.boot.logistics.proxy.EmailRestTemplate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.data.redis.core.ValueOperations;
 import org.springframework.kafka.core.KafkaTemplate;
@@ -33,6 +34,9 @@ public class LogisticsController {
 	@Autowired
 	private KafkaTemplate<String, String> kafkaTemplate;
 
+	@Value("${spring.boot.demo.logistics.topic:tsw}")
+	private String topic;
+
 	private final Random RANDOM = new Random();
 
 	@RequestMapping("/create")
@@ -50,14 +54,19 @@ public class LogisticsController {
 				e.printStackTrace();
 			}
 		}
-		ValueOperations<String, String> ops = stringRedisTemplate.opsForValue();
-		ops.set("tsw", "TSW is the best!");
+		try {
+			ValueOperations<String, String> ops = stringRedisTemplate.opsForValue();
+			ops.set(topic, "TSW is the best!");
 //		if (!emailRestTemplate.send(logistics)) {
 //			return false;
 //		}
-		kafkaTemplate.send("tsw", logistics.getOrderId() + "");
-		LOG.info("Logistics of orderId [{}] is created.", logistics.getOrderId());
-		return true;
+			kafkaTemplate.send(topic, logistics.getOrderId() + "");
+			LOG.info("Logistics of orderId [{}] is created.", logistics.getOrderId());
+			return true;
+		} catch (Exception e) {
+			LOG.error("Logistics of orderId [{}] is created failed.", logistics.getOrderId(), e);
+			return false;
+		}
 	}
 
 }

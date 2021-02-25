@@ -55,21 +55,26 @@ public class OrderController {
 		// 下单
 		int orderId = orderService.create(order);
 		if (orderId > 0) {
-			LOG.info("Order of orderId [{}] is created.", orderId);
-			order.setOrderId(orderId);
-			// 扣钱
-			if (!accountRestTemplate.pay(order)) {
-				return "Order of orderId [" + orderId +"] is paid failed.";
+			try {
+				LOG.info("Order of orderId [{}] is created.", orderId);
+				order.setOrderId(orderId);
+				// 扣钱
+				if (!accountRestTemplate.pay(order)) {
+					return "Order of orderId [" + orderId + "] is paid failed.";
+				}
+				// 减库存
+				if (!inventoryRestTemplate.deduct(order)) {
+					return "Inventory of orderId [" + orderId + "] is deducted failed.";
+				}
+				if (!orderService.finish(order)) {
+					return "Order of orderId [" + orderId + "] is finished failed.";
+				}
+				LOG.info("Order of orderId [{}] is finished.", orderId);
+				return "Order of orderId [" + orderId + "] is finished.";
+			} catch (Exception e) {
+				LOG.error("Order of orderId [{}] is finished failed.", orderId, e);
+				return "Order of orderId [" + orderId + "] is finished failed.";
 			}
-			// 减库存
-			if (!inventoryRestTemplate.deduct(order)) {
-				return "Inventory of orderId [" + orderId +"] is deducted failed.";
-			}
-			if (!orderService.finish(order)) {
-				return "Order of orderId [" + orderId +"] is finished failed.";
-			}
-			LOG.info("Order of orderId [{}] is finished.", orderId);
-			return "Order of orderId [" + orderId +"] is finished.";
 		} else {
 			return "Order of orderId [" + orderId +"] is created failed.";
 		}

@@ -4,6 +4,7 @@ import com.tencent.cloud.tsw.demo.boot.common.entity.Email;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.data.redis.core.ValueOperations;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -25,6 +26,9 @@ public class EmailController {
 	@Autowired
 	private StringRedisTemplate stringRedisTemplate;
 
+	@Value("${spring.boot.demo.email.topic:tsw}")
+	private String topic;
+
 	private final Random RANDOM = new Random();
 
 	@RequestMapping("/send")
@@ -43,11 +47,16 @@ public class EmailController {
 			}
 		}
 
-		ValueOperations<String, String> ops = stringRedisTemplate.opsForValue();
-		Object value = ops.get("tsw");
-		LOG.info("Redis value of key[tsw] is [{}] when orderId is [{}].", value, email.getOrderId());
-		LOG.info("Email of orderId [{}] is sent.", email.getOrderId());
-		return true;
+		try {
+			ValueOperations<String, String> ops = stringRedisTemplate.opsForValue();
+			Object value = ops.get(topic);
+			LOG.info("Redis value of key[tsw] is [{}] when orderId is [{}].", value, email.getOrderId());
+			LOG.info("Email of orderId [{}] is sent.", email.getOrderId());
+			return true;
+		} catch (Exception e) {
+			LOG.error("Email of orderId [{}] is sent failed.", email.getOrderId(), e);
+			return false;
+		}
 	}
 
 }
