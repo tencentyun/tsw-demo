@@ -3,6 +3,18 @@ server:
 spring:
   application:
     name: spring-cloud-zipkin-inventory
+  cloud:
+    consul:
+      host: ${consul.host}
+      port: ${consul.port}
+      discovery:
+        enabled: true
+        heartbeat:
+          enabled: true
+          ttl-unit: s
+          ttl-value: 5
+        prefer-ip-address: true
+        instance-id: ${spring.application.name}-${server.port}-${spring.cloud.client.ip-address}
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://${db.host}:${db.port}/tsw_demo?useSSL=false&characterEncoding=utf8&serverTimezone=GMT

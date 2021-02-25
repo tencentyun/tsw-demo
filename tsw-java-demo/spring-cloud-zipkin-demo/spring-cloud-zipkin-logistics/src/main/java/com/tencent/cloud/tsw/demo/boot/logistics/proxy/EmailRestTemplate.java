@@ -20,7 +20,7 @@ public class EmailRestTemplate {
 		// 发送邮件
 		Email email = new Email();
 		email.setOrderId(logistics.getOrderId());
-		return restTemplate.postForObject("http://127.0.0.1:19114/email/send", email, Boolean.class);
+		return restTemplate.postForObject("http://spring-cloud-zipkin-email/email/send", email, Boolean.class);
 	}
 
 }

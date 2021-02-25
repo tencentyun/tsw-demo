@@ -1,8 +1,8 @@
 package com.tencent.cloud.tsw.demo.boot.account;
 
 import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 /**
@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
  * @date 2020/11/5
  */
 @SpringBootApplication
+@EnableDiscoveryClient
 @EnableTransactionManagement
 public class AccountApplication {
 
