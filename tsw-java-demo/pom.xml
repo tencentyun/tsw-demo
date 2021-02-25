@@ -28,7 +28,6 @@
     </properties>
 
     <modules>
-        <module>kafka-java-demo</module>
         <module>spring-boot-demo</module>
         <module>spring-cloud-zipkin-demo</module>
     </modules>
