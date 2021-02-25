@@ -1,5 +1,5 @@
 <assembly>
-    <id>tsw-demo-spring-cloud-zipkin</id>
+    <id>bin</id>
     <formats>
         <format>zip</format>
     </formats>

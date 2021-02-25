@@ -25,7 +25,7 @@ graph LR
 
 PS: account、email、inventory、logistics和order目录可以在不同主机上任意部署。
 ```
-|-- assembly-1.0-tsw-demo-spring-cloud-zipkin
+|-- spring-cloud-zipkin-assembly-1.0-bin
        |-- start.sh
        |-- curl_cron.sh
        |-- README.md

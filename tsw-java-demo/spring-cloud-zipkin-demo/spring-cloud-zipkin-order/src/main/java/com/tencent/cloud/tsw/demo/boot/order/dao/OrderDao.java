@@ -23,7 +23,7 @@ public class OrderDao {
 	private JdbcTemplate jdbcTemplate;
 
 	public int create(Order order) {
-		String sql = "INSERT INTO tsw_demo.tws_demo_order (product_id, qty, account_id) VALUES (?, ?, ?)";
+		String sql = "INSERT INTO tsw_demo.tsw_demo_order (product_id, qty, account_id) VALUES (?, ?, ?)";
 		try {
 			GeneratedKeyHolder keyHolder = new GeneratedKeyHolder();
 			jdbcTemplate.update(new PreparedStatementCreator() {
@@ -44,7 +44,7 @@ public class OrderDao {
 	}
 
 	public boolean finish(Order order) {
-		String sql = "UPDATE tsw_demo.tws_demo_order SET status = 1 WHERE status = 0 AND order_id = ?";
+		String sql = "UPDATE tsw_demo.tsw_demo_order SET status = 1 WHERE status = 0 AND order_id = ?";
 		try {
 			return jdbcTemplate.update(sql, new PreparedStatementSetter() {
 				@Override

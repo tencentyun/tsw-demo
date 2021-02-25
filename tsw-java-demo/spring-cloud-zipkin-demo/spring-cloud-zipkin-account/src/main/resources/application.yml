@@ -28,3 +28,6 @@ spring:
 logging:
   level:
     ROOT: info
+ribbon:
+  ReadTimeout: 30000
+  ConnectTimeout: 3000

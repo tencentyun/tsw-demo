@@ -1,5 +1,5 @@
 <assembly>
-    <id>tsw-demo-spring-cloud-jaeger</id>
+    <id>bin</id>
     <formats>
         <format>zip</format>
     </formats>
