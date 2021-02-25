@@ -47,16 +47,22 @@ public class InventoryController {
 			}
 		}
 
-		Inventory inventory = new Inventory();
-		inventory.setProductId(order.getProductId());
-		inventory.setQty(order.getQty());
-		if (!logisticsRestTemplate.create(order)) {
+		try {
+			Inventory inventory = new Inventory();
+			inventory.setProductId(order.getProductId());
+			inventory.setQty(order.getQty());
+			if (!logisticsRestTemplate.create(order)) {
+				return false;
+			}
+			if (!inventoryService.deduct(inventory)) {
+				return false;
+			}
+			LOG.info("Inventory of orderId [{}] is deducted.", order.getOrderId());
+			return true;
+		} catch (Exception e) {
+			LOG.error("Inventory of orderId [{}] is deducted failed.", order.getOrderId(), e);
 			return false;
 		}
-		if (!inventoryService.deduct(inventory)) {
-			return false;
-		}
-		LOG.info("Inventory of orderId [{}] is deducted.", order.getOrderId());
-		return true;
+
 	}
 }

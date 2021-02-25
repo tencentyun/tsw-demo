@@ -3,6 +3,7 @@ package com.tencent.cloud.tsw.demo.boot.inventory.proxy;
 import com.tencent.cloud.tsw.demo.boot.common.entity.Logistics;
 import com.tencent.cloud.tsw.demo.boot.common.entity.Order;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
@@ -16,11 +17,14 @@ public class LogisticsRestTemplate {
 	@Autowired
 	private RestTemplate restTemplate;
 
+	@Value("${spring.boot.demo.logistics.url:127.0.0.1:19103}")
+	private String logisticsUrl;
+
 	public Boolean create(Order order) {
 		// 发送邮件
 		Logistics logistics = new Logistics();
 		logistics.setOrderId(order.getOrderId());
-		return restTemplate.postForObject("http://127.0.0.1:19103/logistics/create", logistics, Boolean.class);
+		return restTemplate.postForObject("http://" + logisticsUrl + "/logistics/create", logistics, Boolean.class);
 	}
 
 }

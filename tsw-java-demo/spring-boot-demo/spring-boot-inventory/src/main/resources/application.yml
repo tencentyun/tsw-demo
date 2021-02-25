@@ -5,6 +5,10 @@ spring:
     name: spring-boot-inventory
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://127.0.0.1:3306/tsw_demo?useSSL=false&characterEncoding=utf8&serverTimezone=GMT
-    username:
-    password:
+    url: jdbc:mysql://${db.host}:${db.port}/tsw_demo?useSSL=false&characterEncoding=utf8&serverTimezone=GMT
+    username: ${db.username}
+    password: ${db.password}
+  boot:
+    demo:
+      logistics:
+        url: ${logistics.url}

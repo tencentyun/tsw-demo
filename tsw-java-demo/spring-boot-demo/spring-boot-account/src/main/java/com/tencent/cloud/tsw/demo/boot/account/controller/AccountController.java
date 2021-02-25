@@ -43,14 +43,19 @@ public class AccountController {
 			}
 		}
 
-		Account account = new Account();
-		account.setAccountId(order.getAccountId());
-		account.setBalance(order.getQty());
-		if (!accountService.pay(account)) {
+		try {
+			Account account = new Account();
+			account.setAccountId(order.getAccountId());
+			account.setBalance(order.getQty());
+			if (!accountService.pay(account)) {
+				return false;
+			}
+			LOG.info("OrderId [{}] is paid.", order.getOrderId());
+			return true;
+		} catch (Exception e) {
+			LOG.error("OrderId [{}] is paid failed.", order.getOrderId(), e);
 			return false;
 		}
-		LOG.info("OrderId [{}] is paid.", order.getOrderId());
-		return true;
 	}
 
 }

@@ -5,11 +5,11 @@ spring:
     name: spring-boot-logistics
   redis:
     database: 0
-    host: 127.0.0.1
-    port:
-    password:
+    host: ${redis.host}
+    port: ${redis.port}
+    password: ${redis.password}
   kafka:
-    bootstrap-servers:
+    bootstrap-servers: ${kafka.servers}
     #生产者的配置，大部分我们可以使用默认的，这里列出几个比较重要的属性
     producer:
       #每批次发送消息的数量
@@ -24,4 +24,10 @@ spring:
       properties:
         sasl.mechanism: PLAIN
         security.protocol: SASL_PLAINTEXT
-        sasl.jaas.config: org.apache.kafka.common.security.plain.PlainLoginModule required username="username" password="password";
+        sasl.jaas.config: org.apache.kafka.common.security.plain.PlainLoginModule required username="${kafka.username}" password="${kafka.password}";
+  boot:
+    demo:
+      logistics:
+        topic: ${logistics.topic}
+#      email:
+#        url: ${email.url}

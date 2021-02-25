@@ -19,7 +19,7 @@ public class KafkaReceiver {
     @Autowired
     private StringRedisTemplate stringRedisTemplate;
 
-    @KafkaListener(topics = "tsw")
+    @KafkaListener(topics = "${spring.boot.demo.email.topic:tsw}")
     public void listen(ConsumerRecord<?, ?> record) {
 
         Optional<?> kafkaMessage = Optional.ofNullable(record.value());
