@@ -6,32 +6,27 @@
 
     <parent>
         <groupId>com.tencent.cloud</groupId>
-        <artifactId>spring-cloud-zipkin-demo</artifactId>
+        <artifactId>spring-cloud-jaeger-demo</artifactId>
         <version>1.0</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
 
-    <artifactId>spring-cloud-zipkin-order</artifactId>
+    <artifactId>spring-cloud-jaeger-email</artifactId>
 
     <dependencies>
         <dependency>
             <groupId>com.tencent.cloud</groupId>
-            <artifactId>spring-cloud-zipkin-demo-common</artifactId>
+            <artifactId>spring-cloud-jaeger-demo-common</artifactId>
         </dependency>
 
         <dependency>
             <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-jdbc</artifactId>
+            <artifactId>spring-boot-starter-data-redis</artifactId>
         </dependency>
 
         <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-openfeign</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>mysql</groupId>
-            <artifactId>mysql-connector-java</artifactId>
+            <groupId>org.springframework.kafka</groupId>
+            <artifactId>spring-kafka</artifactId>
         </dependency>
     </dependencies>
 
@@ -41,7 +36,7 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <configuration>
-                    <mainClass>com.tencent.cloud.tsw.demo.boot.order.OrderApplication</mainClass>
+                    <mainClass>com.tencent.cloud.tsw.demo.boot.email.EmailApplication</mainClass>
                     <layout>JAR</layout>
                 </configuration>
             </plugin>

@@ -6,27 +6,22 @@
 
     <parent>
         <groupId>com.tencent.cloud</groupId>
-        <artifactId>spring-cloud-zipkin-demo</artifactId>
+        <artifactId>spring-cloud-jaeger-demo</artifactId>
         <version>1.0</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
 
-    <artifactId>spring-cloud-zipkin-order</artifactId>
+    <artifactId>spring-cloud-jaeger-account</artifactId>
 
     <dependencies>
         <dependency>
             <groupId>com.tencent.cloud</groupId>
-            <artifactId>spring-cloud-zipkin-demo-common</artifactId>
+            <artifactId>spring-cloud-jaeger-demo-common</artifactId>
         </dependency>
 
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-jdbc</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-openfeign</artifactId>
         </dependency>
 
         <dependency>
@@ -41,7 +36,7 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <configuration>
-                    <mainClass>com.tencent.cloud.tsw.demo.boot.order.OrderApplication</mainClass>
+                    <mainClass>com.tencent.cloud.tsw.demo.boot.account.AccountApplication</mainClass>
                     <layout>JAR</layout>
                 </configuration>
             </plugin>
