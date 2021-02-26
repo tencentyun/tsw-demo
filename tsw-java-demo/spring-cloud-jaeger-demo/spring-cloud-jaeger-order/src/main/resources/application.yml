@@ -27,5 +27,5 @@ opentracing:
     const-sampler:
       decision: true
     udp-sender:
-      host: ${jaeger}
-      port: 6831
+      host: ${jaeger.host}
+      port: ${jaeger.port}

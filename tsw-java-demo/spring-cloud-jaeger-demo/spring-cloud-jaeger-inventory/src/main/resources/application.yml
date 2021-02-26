@@ -23,3 +23,11 @@ spring:
 logging:
   level:
     ROOT: info
+opentracing:
+  jaeger:
+    enabled: true
+    const-sampler:
+      decision: true
+    udp-sender:
+      host: ${jaeger.host}
+      port: ${jaeger.port}
