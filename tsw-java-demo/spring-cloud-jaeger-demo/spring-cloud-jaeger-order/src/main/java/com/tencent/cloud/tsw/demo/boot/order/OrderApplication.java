@@ -1,5 +1,7 @@
 package com.tencent.cloud.tsw.demo.boot.order;
 
+import io.opentracing.*;
+import io.opentracing.propagation.Format;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
@@ -26,5 +28,4 @@ public class OrderApplication {
     public RestTemplate restTemplate() {
         return new RestTemplate();
     }
-
 }

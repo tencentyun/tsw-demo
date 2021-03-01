@@ -24,6 +24,8 @@ logging:
 opentracing:
   jaeger:
     enabled: true
+    log-spans: true
+    service-name: ${spring.application.name}
     const-sampler:
       decision: true
     udp-sender:

@@ -26,8 +26,8 @@
 
         <dependency>
             <groupId>io.opentracing.contrib</groupId>
-            <artifactId>opentracing-spring-cloud-starter</artifactId>
-            <version>0.5.9</version>
+            <artifactId>opentracing-spring-jaeger-cloud-starter</artifactId>
+            <version>3.2.2</version>
         </dependency>
     </dependencies>
 </project>
