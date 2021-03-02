@@ -18,7 +18,7 @@ kafka_password=""
 consul_host=""
 consul_port="8500"
 
-jvm_opt="-Xms64m -Xmx64m -XX:MaxMetaspaceSize=32m"
+jvm_opt="-Xms128m -Xmx256m -XX:MaxMetaspaceSize=128m"
 db_opt="--db.host=$db_host --db.port=$db_port --db.username=$db_username --db.password=$db_password"
 redis_opt="--redis.host=$redis_host --redis.port=$redis_port --redis.password=$redis_password"
 kafka_opt="--kafka.servers=$kafka_servers --kafka.username=$kafka_username --kafka.password=$kafka_password"
@@ -62,27 +62,27 @@ done
 
 if [ "$package" == "all" ] || [ "$package" == "order" ]; then
   echo "Start order"
-  nohup java -jar spring-cloud-zipkin-order-1.0.jar $jvm_opt $consul_opt $db_opt $zipkin_opt >/dev/null &
+  nohup java $jvm_opt -jar spring-cloud-zipkin-order-1.0.jar $consul_opt $db_opt $zipkin_opt >/dev/null &
 fi
 
 if [ "$package" == "all" ] || [ "$package" == "account" ]; then
   echo "Start account"
-  nohup java -jar spring-cloud-zipkin-account-1.0.jar $jvm_opt $consul_opt $db_opt $zipkin_opt >/dev/null &
+  nohup java $jvm_opt -jar spring-cloud-zipkin-account-1.0.jar $consul_opt $db_opt $zipkin_opt >/dev/null &
 fi
 
 if [ "$package" == "all" ] || [ "$package" == "inventory" ]; then
   echo "Start inventory"
-  nohup java -jar spring-cloud-zipkin-inventory-1.0.jar $jvm_opt $consul_opt $db_opt $zipkin_opt >/dev/null &
+  nohup java $jvm_opt -jar spring-cloud-zipkin-inventory-1.0.jar $consul_opt $db_opt $zipkin_opt >/dev/null &
 fi
 
 if [ "$package" == "all" ] || [ "$package" == "logistics" ]; then
   echo "Start logistics"
-  nohup java -jar spring-cloud-zipkin-logistics-1.0.jar $jvm_opt $consul_opt $redis_opt $kafka_opt $zipkin_opt >/dev/null &
+  nohup java $jvm_opt -jar spring-cloud-zipkin-logistics-1.0.jar $consul_opt $redis_opt $kafka_opt $zipkin_opt >/dev/null &
 fi
 
 if [ "$package" == "all" ] || [ "$package" == "email" ]; then
   echo "Start email"
-  nohup java -jar spring-cloud-zipkin-email-1.0.jar $jvm_opt $consul_opt $redis_opt $kafka_opt $zipkin_opt >/dev/null &
+  nohup java $jvm_opt -jar spring-cloud-zipkin-email-1.0.jar $consul_opt $redis_opt $kafka_opt $zipkin_opt >/dev/null &
 fi
 
 echo "$line"

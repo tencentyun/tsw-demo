@@ -11,8 +11,6 @@ spring:
         enabled: true
         heartbeat:
           enabled: true
-          ttl-unit: s
-          ttl-value: 5
         prefer-ip-address: true
         instance-id: ${spring.application.name}-${server.port}-${spring.cloud.client.ip-address}
   redis:
@@ -45,3 +43,6 @@ spring:
 logging:
   level:
     ROOT: info
+ribbon:
+  ReadTimeout: 20000
+  ConnectTimeout: 3000

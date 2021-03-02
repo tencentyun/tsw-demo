@@ -1,0 +1,55 @@
+server:
+  port: 19124
+spring:
+  application:
+    name: spring-cloud-jaeger-email
+  cloud:
+    consul:
+      host: ${consul.host}
+      port: ${consul.port}
+      discovery:
+        enabled: true
+        heartbeat:
+          enabled: true
+          ttl-unit: s
+          ttl-value: 5
+        prefer-ip-address: true
+        instance-id: ${spring.application.name}-${server.port}-${spring.cloud.client.ip-address}
+  redis:
+    database: 0
+    host: ${redis.host}
+    port: ${redis.port}
+    password: ${redis.password}
+  kafka:
+    bootstrap-servers: ${kafka.servers}
+    #消费者的配置
+    consumer:
+      #Kafka中没有初始偏移或如果当前偏移在服务器上不再存在时,默认区最新 ，有三个选项 【latest, earliest, none】
+      auto-offset-reset: latest
+      #是否开启自动提交
+      enable-auto-commit: true
+      #自动提交的时间间隔
+      auto-commit-interval: 100
+      #key的解码方式
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      #value的解码方式
+      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      #在/usr/local/etc/kafka/consumer.properties中有配置
+      group-id: tsw-spring-boot-demo
+      properties:
+        sasl.mechanism: PLAIN
+        security.protocol: SASL_PLAINTEXT
+        sasl.jaas.config: org.apache.kafka.common.security.plain.PlainLoginModule required username="${kafka.username}" password="${kafka.password}";
+logging:
+  level:
+    ROOT: info
+opentracing:
+  jaeger:
+    enabled: true
+    log-spans: true
+    service-name: ${spring.application.name}
+    const-sampler:
+      decision: true
+    udp-sender:
+      host: ${jaeger.host}
+      port: ${jaeger.port}

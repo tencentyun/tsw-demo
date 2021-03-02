@@ -1,0 +1,33 @@
+server:
+  port: 19120
+spring:
+  application:
+    name: spring-cloud-jaeger-order
+  cloud:
+    consul:
+      host: ${consul.host}
+      port: ${consul.port}
+      discovery:
+        enabled: true
+        heartbeat:
+          enabled: true
+        prefer-ip-address: true
+        instance-id: ${spring.application.name}-${server.port}-${spring.cloud.client.ip-address}
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://${db.host}:${db.port}/tsw_demo?useSSL=false&characterEncoding=utf8&serverTimezone=GMT
+    username: ${db.username}
+    password: ${db.password}
+logging:
+  level:
+    ROOT: info
+opentracing:
+  jaeger:
+    enabled: true
+    log-spans: true
+    service-name: ${spring.application.name}
+    const-sampler:
+      decision: true
+    udp-sender:
+      host: ${jaeger.host}
+      port: ${jaeger.port}
