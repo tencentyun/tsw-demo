@@ -21,6 +21,7 @@
         <module>spring-boot-logistics</module>
         <module>spring-boot-email</module>
         <module>spring-boot-demo-common</module>
+        <module>spring-boot-hello</module>
     </modules>
 
     <dependencyManagement>
