@@ -8,5 +8,5 @@
 
 | 语言 | 名称            | 描述                   | 链接 |
 | --- | --------------- | ----------------------|--------|
-| Java | spring-boot-demo | TSW Spring Boot demo |[Link](https://github.com/tencentyun/tsw-demo/tree/1.0/tsw-java-demo/spring-boot-demo)|
+| Java | spring-boot-demo | TSW Spring Boot demo |[Link](tsw-java-demo/spring-boot-demo)|
 | Java | spring-cloud-zipkin-demo | TSW Spring Cloud Zipkin demo |[Link](https://github.com/tencentyun/tsw-demo/tree/1.0/tsw-java-demo/spring-cloud-zipkin-demo)|
